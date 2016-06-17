@@ -1,0 +1,51 @@
+﻿<div class="row">
+
+    <!--<div class="col-lg-6">-->
+    <!--<div class="widget">-->
+    
+    <div class="widget-heading">
+        <h3 class="widget-title" style="color:blue;">AdminUser Table  {{adminUser.currentPage}}</h3>
+    </div>
+    <form>
+    <div class="form-group">
+        <input class="form-control" ng-model="adminUser.Query" type="text" />
+        <button class="send btn btn-primary btn-primary-color" ng-click="adminUser.listAllUsers();">
+            Search now<i class="icon icon-normal-right-arrow-small"></i>
+        </button>
+    </div>
+    </form>
+
+    <table class="usersTable table table-bordered">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>User Name</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Email</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr dir-paginate="user in adminUser.items | filter:adminUser.q |  itemsPerPage:adminUser.pageSize" total-items="adminUser.totalItems" current-page="adminUser.currentPage">
+                <!--{{user}}>-->
+                <td class="tableId">{{user.id}} </td>
+                <td class="tableUserName">{{user.userName}}   </td>
+                <td class="tableFirstName"> {{user.firstName}}  </td>
+                <td class="tableLastName"> {{user.lastName}}  </td>
+                <td class="tablePhoneNumber">{{user.phoneNumber}}  </td>
+                <td class="tableEmail">{{user.email}}   </td>
+                <td><a ng-href="#/edit/{{user.id}}" class="editListById btn btn-default"> Edit </a></td>
+                <td><a href="" data-ng-click="adminUser.deleteUser(user.id)" class="deleteListById btn btn-default"> Delete </a></td>
+            </tr>
+        </tbody>
+    </table>
+    <div> 
+        <dir-pagination-controls boundary-links="true" on-page-change="adminUser.pageChangeHandler(newPageNumber);" template-url="/Scripts/bower_components/angularUtils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+    </div>
+</div>
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->

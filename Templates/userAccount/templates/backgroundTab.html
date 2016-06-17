@@ -1,0 +1,60 @@
+﻿<br />
+<div class="col-md-12" id="avaCtrler">
+
+    <div class="page-content container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="widget">
+                    <div class="widget-heading">
+                        <h3 class="widget-title">My Background</h3>
+                    </div>
+                    <div class="widget-body">
+
+                        <div class="tab-content">
+
+                            <div id="home" role="tabpanel" aria-labelledby="home-tab" aria-expanded="true" class="tab-pane fade active in">
+
+                                <div class="container-fluid">
+                                    <div class="row">
+                                        <div class="col-md-5">
+
+                                            <p>Update your profile's background image below.</p>
+
+                                            <!-- Initialize ngDropzone directive -->
+                                            <div class="dropzone"
+                                                 method="post"
+                                                 enctype="multipart/form-data"
+                                                 ng-dropzone
+                                                 dropzone="bg.dropzone"
+                                                 dropzone-config="bg.dzConfig"
+                                                 event-handlers="{
+                                                 'addedfile': bg.dzAddedFile,
+                                                 'error': bg.dzError,
+                                                 'sending': bg.dzOnSending,
+                                                 'success': bg.dzOnSuccess,
+                                                 }">
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-2"></div>
+
+                                        <div class="col-md-5">
+                                            <p>Current background:</p>
+                                            <img id="myCurrentBackground" ng-src="{{bg.currentUser.backGroundPhoto.fullUrl}}" class="img-rounded img-responsive" width="400" height="400">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<input type="hidden" value="@Model.Item" id="UserID" />-->
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

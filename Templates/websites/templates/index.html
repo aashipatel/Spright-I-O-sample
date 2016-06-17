@@ -1,0 +1,31 @@
+﻿<div class="row">
+    <!--<div class="col-sm-6 table-responsive" ng-controller="websiteController as webController">-->
+    <h2 class="widget-title" style="color:blue;"> Websites Management</h2>
+    <a ng-href="#/create" class="btn btn-info pull-right" id="newCar"> New Website</a>
+    <table class="usersTable table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Slug</th>
+                <th>URL</th>
+                <th>Status</th>
+                <th>Actions</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr data-ng-repeat="data in webController.items track by data.id">
+                <td scope="row" class="IDTD">{{data.id}}</td>
+                <td class="NameTD"><a href="http://autodealio.dev/websites/{{data.slug}}">{{data.name}}</a></td>
+                <td class="SlugTD">{{data.slug}}</td>
+                <td class="URLTD">{{data.url}}</td>
+                <td><span class="ActiveTD">{{data.active}}</span></td>
+                <td><a ng-href="#/details/{{data.id}}" class="btn btn-default editBtn">Edit</a></td>
+                <td><a class="btn btn-danger editBtn" ng-click="webController.deleteWebsite(data.id)">Delete</a></td>
+            </tr>
+
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,133 @@
+﻿<div class="row">
+    <div class="col-lg-6">
+        <form class="form-horizontal" id="userForm" role="form" name="adminUser.updateForm">
+            <!-- Username input-->
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput"> User Name  </label>
+                <div class="col-sm-6">
+                    <input id="userName"
+                           name="UserName"
+                           type="text"
+                           placeholder="User Name"
+                           class="form-control"
+                           data-ng-model="adminUser.item.userName">
+                </div>
+            </div>
+            <!-- First Name input-->
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput"> First Name </label>
+                <div class="col-sm-6">
+                    <input id="firstName"
+                           class="form-control ng-class:{'error': adminUser.showNewEmployeeErrors && !adminUser.updateForm.FirstName.$valid}"
+                           data-ng-model="adminUser.item.firstName"
+                           name="FirstName"
+                           type="text"
+                           required>
+                    <div role="alert" class="help-inline error" style="color:red;">
+                        <span class="error" ng-show="adminUser.showNewEmployeeErrors && adminUser.updateForm.FirstName.$error.required">First Name is required</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Last Name input-->
+            <div class="form-group">
+                <label class="col-sm-2 control-label" for="textinput"> Last Name </label>
+                <div class="col-sm-6">
+                    <input id="lastName"
+                           name="LastName"
+                           type="text"
+                           placeholder="Last Name"
+                           class="form-control ng-class:{'error': adminUser.showNewEmployeeErrors && !adminUser.updateForm.LastName.$valid}"
+                           data-ng-model="adminUser.item.lastName"
+                           required>
+                    <div role="alert" class="help-inline error" style="color:red;">
+                        <span class="error" ng-show="adminUser.showNewEmployeeErrors && adminUser.updateForm.LastName.$error.required">Last Name is required</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Email input-->
+            <label class="col-sm-2 control-label" for="textinput"> Email Address </label>
+            <div class="col-sm-4">
+                <input id="emailAddress"
+                       name="EmailAddress"
+                       type="text"
+                       placeholder="Email Address"
+                       class="form-control ng-class:{'error': adminUser.showNewEmployeeErrors && !adminUser.updateForm.EmailAddress.$valid}"
+                       data-ng-model="adminUser.item.email"
+                       required>
+                <div role="alert" class="help-inline error" style="color:red;">
+                    <span class="error" ng-show="adminUser.showNewEmployeeErrors && adminUser.updateForm.EmailAddress.$error.required">Email is required</span>
+                </div>
+            </div>
+            <!-- Phone# input-->
+            <label class="col-sm-2 control-label" for="textinput"> phone # </label>
+            <div class="col-sm-4">
+                <input id="phoneNumber"
+                       name="PhoneNumber"
+                       type="text"
+                       placeholder="Phone Number"
+                       class="form-control ng-class:{'error': adminUser.showNewEmployeeErrors && !adminUser.updateForm.PhoneNumber.$valid}"
+                       data-ng-model="adminUser.item.phoneNumber"
+                       required>
+                <div role="alert" class="help-inline error" style="color:red;">
+                    <span class="error" ng-show="adminUser.showNewEmployeeErrors && adminUser.updateForm.PhoneNumber.$error.required">Phone Number is required</span>
+                </div>
+            </div>
+
+            <br /><br />
+            <hr />
+
+            <div class="form-group" style="margin-left:20px;">
+                <label> Please select your role</label>
+
+                <div class="radio" ng-repeat="item in adminUser.userRolesList">
+                    <label>
+                        <input ng-model="adminUser.item.roleId" type="radio" name="optradio" value="{{item.id}}" ng-change='adminUser.showWebsites()'>
+                        {{item.name}}
+
+                    </label>
+                </div>
+
+            </div>
+
+            <hr />
+            <input class="hidden" data-ng-model="adminUser.item.id" />
+        </form>
+        <!-- Form Submission Buttons -->
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-6">
+                <div class="pull-right">
+                    <a href="/adminUsers/index"
+                       class="btn btn-default
+                       active"
+                       role="button">Cancel</a>
+                    <button id="saveUpdate"
+                            data-ng-click="adminUser.updateAdminUser(adminUser.item)"
+                            type="button"
+                            class="btn btn-primary">
+                        Update
+                    </button>
+                    <!-- Not sure which btn to keep<a href="/address/index" class="btn btn-default active" role="button">Manage</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-lg-6" ng-show="adminUser.showWebs">
+        <pre>{{adminUser.item.website}} </pre>
+        <ul>
+            <li ng-repeat="item in adminUser.webList">
+                <span class="c-indicator"></span>
+                <input class="c-input c-checkbox" type="checkbox" checklist-model="adminUser.item.website" checklist-value="item.id"> {{item.name}}
+            </li>
+        </ul>
+    </div>
+</div><!-- /.col-lg-12 -->
+<style>
+    .my-error-class {
+        color: red;
+    }
+
+    .my-valid-class {
+        color: green;
+    }
+</style>

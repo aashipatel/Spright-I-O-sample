@@ -1,0 +1,108 @@
+﻿<div ng-include="'/Scripts/sabio/application/websites/templates/tabs.html'"></div>
+
+<h1>Details</h1>
+<form novalidate class="form-horizontal" id="websiteForm" name="main.websiteForm">
+
+    <div class="form-group">
+        <label for="Name" class="col-sm-2 control-label">Name</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control ng-class:{'error': main.showNewWebsiteErrors && ! main.websiteForm.Name.$valid}"
+                   id="Name" name="Name"
+                   ng-model="main.itemId.name"
+                   ng-blur="main.blur()"
+                   ng-minlength="2"
+                   required>
+
+        </div>
+        <div role="alert" class="help-inline error">
+            <span class="error" ng-show="main.showNewWebsiteErrors && main.websiteForm.Name.$error.required">First Name is required</span> 
+            <span class="error" ng-show="main.showNewWebsiteErrors && main.websiteForm.Name.$error.minlength">Too short! First name must be at least 2 characters</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Slug" class="col-sm-2 control-label">Slug</label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control"
+                   id="Slug" name="Slug" ng-model="main.itemId.slug"
+                   readonly>
+        </div>
+    </div>
+    <div class="form-group">
+        <!--<pre>{{main.itemId}}</pre>-->
+        <label for="Slug" class="col-sm-2 control-label">URL</label>
+        <div class="col-sm-4">
+            <input type="url" class="form-control ng-class:{'error': main.showNewWebsiteErrors && ! main.websiteForm.URL.$valid }"
+                   id="URL" name="URL"
+                   ng-model="main.itemId.url"
+                   required>
+
+        </div>
+        <div role="alert" class="help-inline error">
+            <span class="error" ng-show="main.showNewWebsiteErrors && main.websiteForm.URL.$error.required">URL is required</span> <!-- errors for specific fields can be accessed with the syntax [form name].[field name].$error.[validator name] -->
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Theme" class="col-sm-2 control-label">Theme</label>
+        <div class="col-sm-4">
+            <select class="form-control ng-class:{'error': webController.showNewWebsiteErrors && ! webController.websiteForm.theme.$valid }"
+                    ng-model="main.itemId.theme"
+                    id="theme" name="theme"
+                    required>
+
+                <option value="Carat">Carat</option>
+                <option value="Umega">Umega</option>
+            </select>
+        </div>
+        <div role="alert" class="help-inline error">
+            <span class="error" ng-show="webController.showNewWebsiteErrors && webController.websiteForm.theme.$error.required">Theme is required</span>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="Description" class="col-sm-2 control-label">Description</label>
+        <div class="col-sm-4">
+            <textarea class="form-control ng-class:{'error':main.showNewWebsiteErrors && main.websiteForm.Description.$error} "
+                      id="Description"
+                      name="Description" ng-model="main.itemId.description"
+                      required></textarea>
+
+        </div>
+        <div role="alert" class="help-inline error">
+            <span class="error" ng-show="main.showNewWebsiteErrors && main.websiteForm.Description.$error.required">Description is required</span> <!-- errors for specific fields can be accessed with the syntax [form name].[field name].$error.[validator name] -->
+
+        </div>
+    </div>
+    <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-2">
+            <input id="Active"
+                   class="" checkbox_check"
+                   ng-model="main.itemId.active"
+                   name="Active"
+                   type="checkbox"
+                   >Active
+        </div>
+   </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-1">
+            <button type="submit" class="btn btn-danger"data-dismiss="modal">Cancel</button>
+        </div>
+        <div class="col-sm-2">
+            <button type="button"  class="btn btn-primary" id="updateID" ng-click="main.updateWebsite(itemId)" >Update</button>
+        </div>
+    </div>
+</form>
+
+<div class="alert alert-success hidden col-sm-offset-2 col-sm-4" id="formSubmitSuccess">
+    <strong>Success!</strong> <span></span>
+</div>
+
+<div class="alert alert-danger hidden col-sm-offset-2 col-sm-4" id="formSubmitError">
+    <strong>Oops!</strong> <span></span>
+</div>
+
+<div class="alert alert-warning hidden col-sm-offset-2 col-sm-4" id="formWarning">
+    <strong>Oops!</strong> <span></span>
+</div>

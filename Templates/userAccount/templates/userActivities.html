@@ -1,0 +1,37 @@
+﻿<div class="col-md-6" ng-controller="userActivitiesController as uac">
+    <div class="widget">
+        <div class="widget-heading">
+            <h3 class="widget-title">Activities</h3>
+
+        </div>
+        <div class="widget-body">
+            <div class="col-xs-4">
+                <label for="search">Search:</label>
+                <input ng-model="q" id="search" class="form-control" placeholder="Filter text">
+            </div>
+            <div class="col-xs-4">
+                <label for="search">Items per page:</label>
+                <input type="number" min="1" max="100" class="form-control" ng-model="uac.pageSize" ng-change="uac.loadRows()">
+            </div>
+            <br /><br /><br />
+            <hr />
+            <ul class="media-list mb-0">
+
+                <li class="media" dir-paginate="item in uac.items | filter:uac.q |  itemsPerPage:uac.pageSize" total-items="uac.totalItems" current-page="uac.currentPage">
+
+                    <div class="media-body">
+                        <img src="" />
+                        You
+                        <span class="activityAction">{{item.action}} </span>
+                        <a href="{{item.targetUserUrl}}"> <span ng-if="item.targetUserID > 0">{{item.targetUserID}}</span>{{item.targetUserName}} </a> on
+                        <span class="activityDate">{{uac.formatDate(item.createdDate)}}.</span>
+                    </div>
+                </li>
+
+            </ul>
+
+            <dir-pagination-controls boundary-links="true" on-page-change="uac.pageChangeHandler(newPageNumber);" template-url="/Scripts/bower_components/angularUtils-pagination/dirPagination.tpl.html"></dir-pagination-controls>
+            
+        </div>
+    </div>
+</div>

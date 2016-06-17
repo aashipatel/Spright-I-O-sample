@@ -1,0 +1,11 @@
+﻿
+<div ng-controller="tabController as main">
+    <a href="/websites#/list" class="btn btn-outline btn-default pull-right">Back</a>  
+    <ul class="nav nav-tabs">
+        <li ng-class="main.tabClass(tab)" ng-repeat="tab in main.tabs">
+            <a href="{{tab.link}}" ng-click="main.setSelectedTab(tab)">{{tab.label}}</a>
+        </li>
+    </ul>
+
+    
+</div>

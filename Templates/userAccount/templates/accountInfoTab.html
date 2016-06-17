@@ -1,0 +1,46 @@
+﻿<br />
+<div class="col-md-6">
+    <div class="widget">
+        <div class="widget-heading">
+            <h3 class="widget-title">My Account</h3>
+        </div>
+        <div class="widget-body">
+            <form id="userForm" name="ac.controllerForm" novalidate>
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" class="form-control ng-class:{'error': ac.showFormErrors && !ac.controllerForm.firstName.$valid}"
+                           ng-model="ac.user.firstName"
+                           ng-minlength="2"
+                           required>
+                </div>
+
+                <div role="alert" class="help-inline error color-dark-red">
+                    <span class="error" ng-show="ac.showFormErrors && ac.controllerForm.firstName.$error.required" style="color: red;">First Name is required</span> 
+                    <span class="error" ng-show="ac.showFormErrors && ac.controllerForm.firstName.$error.minlength" style="color: red;">Too short! First name must be at least 2 characters</span>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" class="form-control ng-class:{'error': ac.showFormErrors && !ac.controllerForm.lastName.$valid}"
+                           ng-model="ac.user.lastName"
+                           ng-minlength="2"
+                           required>
+                </div>
+
+                <div role="alert" class="help-inline error color-dark-red">
+                    <span class="error" ng-show="ac.showFormErrors && ac.controllerForm.firstName.$error.required" style="color: red;">First Name is required</span>
+                    <span class="error" ng-show="ac.showFormErrors && ac.controllerForm.firstName.$error.minlength" style="color: red;">Too short! First name must be at least 2 characters</span>
+                </div>
+
+                <div class="text-right">
+                    <button type="submit" class="btn btn-outline btn-success" id="btn-submit" ng-click="ac.updateUser()">Update</button>
+                    <button type="reset" class="btn btn-outline btn-black" ng-click="ac.resetForm()">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div ng-include="'/Scripts/sabio/application/userAccount/templates/userActivities.html'"></div>
+
+

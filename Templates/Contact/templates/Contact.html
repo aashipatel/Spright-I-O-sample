@@ -1,0 +1,77 @@
+﻿<!--<h2>Contact </h2>
+
+<div>
+    <div class="panel-body" data-ng-controller="ContactController as main" id="contactCtlr">
+
+        <div>
+            <form id="contactForm" class="form-horizontal" name="main.contactForm" ng-submit="main.AddContact()" novalidate>
+                <div class="form-inline"></div>
+                <div class="form-group col-sm-4">
+                    <label col-md-4 class="control-label" for="textfullName">Full name</label>
+                    <input data-ng-model="main.item.fullName"
+                           type="text"
+                           name="fullName"
+                           id="fullName"
+                           class="form-control ng-class:{'error' : main.showitemErrors && !main.contactForm.fullName.$valid}"
+                           required>
+                    <div role="alert" class="help-inline error" style="color:blue;">
+                        <span class="error" ng-show="main.showitemErrors && main.contactForm.fullName.$error.required">Full Name is required</span>
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group col-sm-4 col-md-4">
+                    <label class="control-label" for="textemail">Email address</label>
+
+                    <input data-ng-model="main.item.email"
+                           type="text"
+                           name="email"
+                           id="emailAddress"
+                           class="form-control ng-class:{'error': main.showitemErrors && !main.contactForm.email.$valid}"
+                           required>
+                    <div role="alert" class="help-inline error" style="color:blue;">
+                        <span class="error" ng-show="main.showitemErrors && main.contactForm.email.$error.required">Email is required</span>
+                         since we use input[type=email] we have an email format validator here, even though we didn't specifically set it as an ng-* attribute 
+                        <span class="error" ng-show="main.showitemErrors && main.contactForm.email.$error.required">Must be a valid email address</span>
+                    </div>
+                </div>
+
+
+                <div class="form-group col-sm-4 col-md-4">
+                    <label class="control-label" for="textsubject">Subject</label>
+                    <input data-ng-model="main.item.subject"
+                           type="text"
+                           name="subject"
+                           id="subject"
+                           class="form-control ng-class:{'error': main.showitemErrors && !main.contactForm.subject.$valid}"
+                           required>
+                    <div role="alert" class="help-inline error" style="color:blue;">
+                        <span class="error" ng-show="main.showitemErrors && main.contactForm.subject.$error.required">Subject is required</span>
+                    </div>
+
+                </div>
+
+
+                <div class="textarea form-group col-sm-12 col-md-12">
+                    <label class="control-label" for="textmessage">Message</label>
+                    <textarea data-ng-model="main.item.message"
+                              class="form-control ng-class:{'error': main.showitemErrors && !main.contactForm.message.$valid}"
+                              type="text"
+                              name="message"
+                              id="message"
+                              required></textarea>
+                    <div role="alert" class="help-inline error" style="color:blue;">
+                        <span class="error" ng-show="main.showitemErrors && main.contactForm.message.$error.required">Message is required</span>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-3">
+                    <button class="btn btn-primary btn-block" id="contact" type="submit">Contact</button>
+                </div>
+            </form>
+            <input type="hidden" id="contactUpdateId" value="@Model.Item" />
+        </div>
+    </div>
+</div>-->
