@@ -1,0 +1,203 @@
+﻿@model Sabio.Web.Models.ViewModels.ItemViewModel<int?>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUmega.cshtml";
+}
+
+<h2>Index</h2>
+<div>
+    <form id="ContactForm" class="form-horizontal">
+        <div class="form-inline"></div>
+        <div class="form-group col-sm-4 col-md-4">
+            <label>Full name</label>
+            <input type="text" name="fullName" id="fullName" class="form-control" required>
+        </div>
+        <div class="form-group col-sm-4 col-md-4">
+            <label>Email address</label>
+            <input type="text" name="email" id="emailAddress" class="form-control" required>
+        </div>
+        <div class="form-group col-sm-4 col-md-4">
+            <label>Subject</label>
+            <input type="text" name="subject" id="subject" class="form-control" required>
+        </div>
+        <div class="textarea form-group col-sm-12 col-md-12">
+            <label>Message</label>
+            <textarea class="form-control" name="message" id="message" required min-length="10"></textarea>
+        </div>
+
+        <div class="form-group col-md-3">
+            <button class="btn btn-primary btn-block" id="contact" type="button">Contact</button>
+        </div>
+    </form>
+    <input  type="hidden" id="contactUpdateId" value="@Model.Item"/>
+</div>
+
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        sabio.page.contactId = null
+
+        sabio.page.startUp = function () {
+            sabio.page.initializeValidation();
+            $("#contact").on("click", sabio.page.handlers.onContactClick);
+            getContact();
+            console.log("loaded");
+        };
+        //ajax success this give value
+
+        getContact = function () {
+            sabio.page.contactId = $("#contactUpdateId").val();
+
+            if (sabio.page.contactId && sabio.page.contactId.length > 0) {
+                console.log("EDIT mode - go get the data");
+
+                // Get method for contactId
+                sabio.page.handlers.onContact = function () {
+                    console.log("I have contact");
+                    var MyData = $("#contactUpdateId").serialize();
+                    var url = "/api/Contact/" + sabio.page.contactId
+                    var settings = {
+                        cache: false
+                        , contentType: "application/x-www-form-urlencoded; charset=UTF-8"
+                        , data: MyData
+                        , dataType: "json"
+                        , success: sabio.page.onContactPopById
+                        , error: sabio.page.AjaxError
+                        , type: "GET"
+                    };
+                    $.ajax(url, settings)
+                }
+                sabio.page.handlers.onContact(sabio.page.contactId);  //  this function does not exist but if it did it would be performing a GET ajax call and sticking the data into the form on success
+            }
+            else {
+                console.log("CREATE mode - ContactId is empty");
+            }
+        }
+        sabio.page.onContactPopById = function (Contactresponse) {
+            console.log("email for form", Contactresponse.item);
+            $("#fullName").val(Contactresponse.item.fullName);
+            $("#emailAddress").val(Contactresponse.item.email);
+            $("#subject").val(Contactresponse.item.subject);
+            $("#message").val(Contactresponse.item.message);
+        }
+
+        sabio.page.initializeValidation = function () {
+            jQuery.validator.setDefaults({
+                debug: true
+            });
+
+            //Form validation
+            $("#ContactForm").validate({
+                rules: {
+                    //Required feilds check here
+                    "fullName": {
+                        required: true,
+                        minlength: 4
+                    },
+                    "email": {
+                        required: true,
+                        email: true
+                    },
+                    "subject": {
+                        required: true
+                    },
+                    "message": {
+                        required: true
+                    }
+                },
+                message: {
+                    //message to display for field
+                    "fullName":
+                        {
+                            required: "full-name is required for contact"
+                        },
+                    "email":
+                        {
+                            required: "Email is required for the sample.",
+                            email: "Your email address must be in the format of name@domain.com"
+
+                        },
+
+                    "message": {
+                        required: true
+                    }
+                }
+            });
+
+        }
+
+        sabio.page.handlers.onContactClick = function () {
+            if ($("#ContactForm").valid()) {
+
+                if (sabio.page.contactId && sabio.page.contactId.length > 0) {
+                    console.log("EDIT mode - go get the data");
+                    sabio.page.UpdateContact();
+                }
+                else {
+                    sabio.page.AddContact();
+                }
+            }
+        }
+        //Put Method For ContactId
+
+
+        sabio.page.UpdateContact = function ()
+        {
+            console.log("I have a Id");
+            var MyData = $("#ContactForm").serialize();
+            console.log(MyData);
+            var url = "/api/Contact/" + sabio.page.contactId
+            var settings = {
+                cache: false
+                , contentType: "application/x-www-form-urlencoded; charset=UTF-8"
+                , data: MyData
+                , dataType: "json"
+                , success: sabio.page.onUpdate
+                , error: sabio.page.AjaxError
+                , type: "PUT"
+            };
+            $.ajax(url, settings)
+        }
+
+
+        //AddMEthod for post
+        sabio.page.AddContact = function () {
+            console.log("I dont have a Id");
+            var MyData = $("#ContactForm").serialize();
+            var url = "/api/Contact/post";
+            var settings = {
+                cache: false
+                , contentType: "application/x-www-form-urlencoded; charset=UTF-8"
+                , data: MyData
+                , dataType: "json"
+                , success: sabio.page.CreateSuccess
+                , error: sabio.page.AjaxError
+                , type: "POST"
+            };
+            $.ajax(url, settings)
+        }
+
+        //AjaxSuccess
+        sabio.page.CreateSuccess = function (response) {
+            //paramerter console log kar var nu first
+            console.log(response);
+            ////sabio.page.contactId = response;
+            //$("#ContactForm").text(sabio.page.contactId);
+            //console.log("CreateSuccess");
+        }
+        //Ajak Success on Update
+        sabio.page.onUpdate = function (response) {
+            console.log(response);
+            sabio.page.contactId = response;
+            console.log("onUpdateSuccess", sabio.page.contactId);
+        }
+        //AjakError
+        sabio.page.AjaxError = function (error) {
+            console.log("NotSuccess");
+        }
+    </script>
+
+
+}
