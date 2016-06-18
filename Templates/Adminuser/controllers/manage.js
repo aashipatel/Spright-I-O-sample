@@ -15,8 +15,8 @@
         , $location
         , $AdminRolesService) {
 
-        //  controllerAs with vm syntax: https://github.com/johnpapa/angular-styleguide#style-y032
-        var vm = this;//this points to a new {}
+      
+        var vm = this;
         vm.headingInfo = "Angular 101";
         vm.item = null;
         vm.webList = null;
@@ -28,15 +28,14 @@
         vm.adminUser = null;
         vm.userRolesList = null;
 
-        //vm.webIdItems = null;
-        //vm.webIdItems = $routeParams.webIdItems;
+        
         vm.$websitesService = $websitesService;
         vm.$scope = $scope;
         vm.$adminUserService = $adminUserService;
         vm.$AdminRolesService = $AdminRolesService;
         vm.$scope = $scope;
 
-        //  bindable members (functions) always go up top while the "meat" of the functions go below: https://github.com/johnpapa/angular-styleguide#style-y033
+ 
         vm.receiveItems = _receiveItems;
         vm.selectEmployee = _selectEmployee;
         vm.onEmpError = _onEmpError;
@@ -49,13 +48,10 @@
 
         vm.showWebsites = _showWebsites;
 
-        // vm.IdLodaonSuccess = _IdLodaonSuccess;
-        //vm.onIdLoadError = _onIdLoadError;
-
-        //-- this line to simulate inheritance
+       
         $baseController.merge(vm, $baseController);
 
-        //this is a wrapper for our small dependency on $scope
+       
         vm.notify = vm.$adminUserService.getNotifier($scope);
 
         render();
@@ -64,13 +60,11 @@
             vm.$adminUserService.populateByUserId(vm.userId, vm.receiveItems, vm.onEmpError);
             vm.$websitesService.loadWebsitesRows(_loadSuccess, _onEmpError);
         }
-        //Load website data//
+        /
         function _loadSuccess(data) {
-            // console.log("load website data", data);
             vm.$alertService.success("Load website data");
             vm.notify(function () {
                 vm.webList = data.items;
-
             });
             vm.$AdminRolesService.listAdmins(vm.rolesLoaded, vm.onEmpError);
         }
@@ -104,7 +98,6 @@
         };
 
         function _resetEmployeeForm() {
-            // console.log("reset form");
             vm.employeeFormVisible = false;
             vm.showNewEmployeeErrors = false;
             vm.newEmployee = null;
@@ -113,7 +106,6 @@
         }
 
         function _showEmployeeForm() {
-            // console.log("show form!");
             vm.employeeFormVisible = !vm.employeeFormVisible;
         }
 
@@ -129,12 +121,10 @@
         }
 
         function _selectEmployee(anEmp) {
-            //console.log(anEmp);
             vm.selectedEmployee = anEmp;
         }
 
         function _saveStatus(anEmp) {
-            //console.log("Go and save this new data");
             console.log(anEmp);
         }
 
@@ -157,8 +147,7 @@
         function _onUpdateSuccess(data) {
             console.log("Updated!", data);
             vm.$alertService.success("update website");
-            //window.location.href = '/adminUsers/index';
-
+   
         }
 
         function _showWebsites() {
