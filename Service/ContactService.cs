@@ -56,14 +56,12 @@ namespace Sabio.Web.Services
 
         public  List<Domain.Contact> GetContacts()
         {
-            //making a instance of list contact caling it list and setting it to null
-
             List<Domain.Contact> list = null;
             DataProvider.ExecuteCmd(GetConnection, "dbo.Contact_SelectAll"
                , inputParamMapper: null
                , map: delegate (IDataReader reader, short set)
                {
-                   //here map your output from store post 
+                  
                    Domain.Contact c = new Domain.Contact();
                    int startingIndex = 0;
                    c.Id = reader.GetSafeInt32(startingIndex++);
@@ -80,7 +78,7 @@ namespace Sabio.Web.Services
                }
                );
 
-            // here we return the list to api method that calls it
+            
             return list;
         }
 
