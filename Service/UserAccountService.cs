@@ -24,21 +24,7 @@ namespace Sabio.Web.Services
                }
                );
         }
-        //Update Avatar by Id
-        public void UpdateUserMediaId(UserManagerRequestModel model, Guid Id)
-        {
-            DataProvider.ExecuteNonQuery(GetConnection, "dbo.Users_UpdateMediaId"
-               , inputParamMapper: delegate (SqlParameterCollection paramCollection)
-               {
-                   paramCollection.AddWithValue("@UserId", Id);
-                   paramCollection.AddWithValue("@MediaId", model.MediaId);
-
-
-               }, returnParameters: delegate (SqlParameterCollection param)
-               {
-
-               });
-        }
+       
 
         //Update Upload User Background
         public void UpdateUserBackground(UserManagerRequestModel model, Guid Id)
