@@ -113,9 +113,6 @@ namespace Sabio.Web.Services
                    
                    if (set == 0)
                    {
-                      
-                       m = new Media();
-                       b = new Media();
                        int startingIndex = 0;
                        p.Id = reader.GetSafeString(startingIndex++);
                        p.UserName = reader.GetSafeString(startingIndex++);
@@ -126,31 +123,9 @@ namespace Sabio.Web.Services
                        p.DateAdded = reader.GetSafeDateTime(startingIndex++);
                        p.DateModified = reader.GetSafeDateTime(startingIndex++);
                        p.UserType = reader.GetSafeInt32(startingIndex++);
-                       int MediaId = reader.GetSafeInt32(startingIndex++);
-                       m.ID = reader.GetSafeInt32(startingIndex++);
-                       m.MediaType = reader.GetSafeString(startingIndex++);
-                       m.Path = reader.GetSafeString(startingIndex++);
-                       m.FileName = reader.GetSafeString(startingIndex++);
-                       m.FileType = reader.GetSafeString(startingIndex++);
-                       m.Title = reader.GetSafeString(startingIndex++);
-                       m.Description = reader.GetSafeString(startingIndex++);
                        m.UserID = reader.GetSafeString(startingIndex++);
-                       m.CreatedDate = reader.GetSafeDateTime(startingIndex++);
-                       m.ModifiedDate = reader.GetSafeDateTime(startingIndex++);
-                       m.ThumbnailPath = reader.GetSafeString(startingIndex++);
-                       p.FollowersCount = reader.GetSafeInt32(startingIndex++);
-                       p.FollowedCount = reader.GetSafeInt32(startingIndex++);
-                       b.ID = reader.GetSafeInt32(startingIndex++);
-                       b.MediaType = reader.GetSafeString(startingIndex++);
-                       b.Path = reader.GetSafeString(startingIndex++);
-                       b.FileName = reader.GetSafeString(startingIndex++);
-                       b.FileType = reader.GetSafeString(startingIndex++);
-                       b.Title = reader.GetSafeString(startingIndex++);
-                       b.Description = reader.GetSafeString(startingIndex++);
-                       b.UserID = reader.GetSafeString(startingIndex++);
-                       b.CreatedDate = reader.GetSafeDateTime(startingIndex++);
-                       b.ModifiedDate = reader.GetSafeDateTime(startingIndex++);
-                       b.ThumbnailPath = reader.GetSafeString(startingIndex++);
+                      
+                  
                        // m.BaseUrl = reader.GetSafeString(startingIndex++);
                        if (m.ID == 0)
                        {
