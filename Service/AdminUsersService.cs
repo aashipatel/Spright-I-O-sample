@@ -66,21 +66,12 @@ namespace Sabio.Web.Services
             DataProvider.ExecuteCmd(GetConnection, "dbo.Users_Admin_Select_All"
                , inputParamMapper: delegate (SqlParameterCollection paramCollection)
                {
-                   //  this is where your input params go. it works the same way as with ExecuteNonQuery. 
-                   //  Employees_Select proc does not have any input parameters specified so we leave this commented out
-                   //  paramCollection.AddWithValue("@AppUserId", 36);                                    
                }
                , map: (Action<IDataReader, short>)delegate (IDataReader reader, short set)
                {
                    UserDetails p = new UserDetails();
-                   int startingIndex = 0; //startingOrdinal
-
-                   //string idUsers = reader.GetSafeString(startingIndex++);
-                   //if (idUsers != null)
-                   //{
-                   //    p.Id = new Guid(idUsers);
-                   //};
-
+                   int startingIndex = 0;
+                 
                    p.Id = reader.GetSafeString(startingIndex++);
                    p.UserName = reader.GetSafeString(startingIndex++);
                    p.FirstName = reader.GetSafeString(startingIndex++);
@@ -125,17 +116,7 @@ namespace Sabio.Web.Services
                       
                        m = new Media();
                        b = new Media();
-                       int startingIndex = 0; //startingOrdinal
-
-                       //string idUsers = reader.GetSafeString(startingIndex++);
-                       //if (idUsers != null)
-                       //{
-                       //    p.Id = new Guid(idUsers);
-                       //}
-                       //else
-                       //{
-                       //    throw new Exception("UserId is not valid");
-                       //}
+                       int startingIndex = 0;
                        p.Id = reader.GetSafeString(startingIndex++);
                        p.UserName = reader.GetSafeString(startingIndex++);
                        p.FirstName = reader.GetSafeString(startingIndex++);
@@ -251,12 +232,7 @@ namespace Sabio.Web.Services
                }, map: delegate (IDataReader reader, short set)
                {
                    UserDetails p = new UserDetails();
-                   int startingIndex = 0; //startingOrdinal
-                   //string idUsers = reader.GetSafeString(startingIndex++);
-                   //if (idUsers != null)
-                   //{
-                   //    p.Id = new Guid(idUsers);
-                   //};
+                   int startingIndex = 0; 
                    p.Id = reader.GetSafeString(startingIndex++);
                    p.UserName = reader.GetSafeString(startingIndex++);
                    p.FirstName = reader.GetSafeString(startingIndex++);
