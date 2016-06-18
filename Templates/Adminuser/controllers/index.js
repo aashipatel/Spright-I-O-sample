@@ -11,8 +11,8 @@
                 , $baseController
                 , $adminUserService) {
 
-                //  controllerAs with vm syntax: https://github.com/johnpapa/angular-styleguide#style-y032
-                var vm = this;//this points to a new {}
+                
+                var vm = this;
                 vm.headingInfo = "Angular 101";
                 vm.items = null;
                 vm.selectedEmployee = null;
@@ -23,7 +23,7 @@
                 vm.Query = null;
 
 
-                //  bindable members (functions) always go up top while the "meat" of the functions go below: https://github.com/johnpapa/angular-styleguide#style-y033
+              
                 vm.receiveItems = _receiveItems;
                 vm.selectEmployee = _selectEmployee;
                 vm.onEmpError = _onEmpError;
@@ -36,20 +36,19 @@
                 vm.$scope = $scope;
                 vm.listAllUsers = _listAllUsers;
 
-                //-- this line to simulate inheritance
+             
                 $baseController.merge(vm, $baseController);
 
-                //this is a wrapper for our small dependency on $scope
+             
                 vm.notify = vm.$adminUserService.getNotifier($scope);
 
-                //this is like the sabio.startUp function
+                
                 render();
 
                 function render() {
                     console.log("got here")
                     vm.listAllUsers();
-                    //  defer data operations into an external service: https://github.com/johnpapa/angular-styleguide#style-y035
-                    //vm.$adminUserService.listAllUsers(vm.receiveItems, vm.onEmpError);
+                    
                 }
                 function _listAllUsers() {
                     var payload = {
